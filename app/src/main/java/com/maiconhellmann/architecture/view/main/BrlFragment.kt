@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.maiconhellmann.architecture.R
 import com.maiconhellmann.architecture.misc.ViewLifecycleFragment
+import com.maiconhellmann.architecture.misc.ext.gone
 import com.maiconhellmann.architecture.misc.ext.observe
+import com.maiconhellmann.architecture.misc.ext.visible
 import kotlinx.android.synthetic.main.fragment_rate.*
 import org.koin.android.architecture.ext.viewModel
 
@@ -23,6 +25,15 @@ class BrlFragment : ViewLifecycleFragment() {
 
         observe(viewModel.rate, {
             rateValue.text = it?.brazilianReal?.toString()
+        })
+
+        //ProgressBar
+        observe(viewModel.isDataLoading, {
+            if(it == true){
+                viewProgressBar.visible()
+            }else{
+                viewProgressBar.gone()
+            }
         })
     }
 }

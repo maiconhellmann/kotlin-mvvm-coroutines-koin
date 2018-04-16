@@ -3,12 +3,16 @@ package com.maiconhellmann.architecture.view.main
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.maiconhellmann.architecture.R
+import com.maiconhellmann.architecture.view.ViewConstants
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.architecture.ext.viewModel
+
 
 class MainActivity : AppCompatActivity() {
 
     val viewModel: MainViewModel by viewModel()
+
+    var menuIndex = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +38,20 @@ class MainActivity : AppCompatActivity() {
                 }
             }
             true
+        }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(ViewConstants.BOTTOM_NAVIGATION_MENU_INDEX, bottomMenu.selectedItemId)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        savedInstanceState?.let {
+            menuIndex = it.get(ViewConstants.BOTTOM_NAVIGATION_MENU_INDEX) as Int
+            bottomMenu.selectedItemId = menuIndex
         }
     }
 
