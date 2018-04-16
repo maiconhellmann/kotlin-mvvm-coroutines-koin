@@ -1,0 +1,106 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+
+android {
+    compileSdkVersion 27
+    defaultConfig {
+        applicationId "com.maiconhellmann.architecture"
+        minSdkVersion 15
+        targetSdkVersion 27
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'ACCESS_KEY', '"access_key=7a83f7d4ab1e3c9dd930c9a28211ff3a"'
+            buildConfigField 'String', 'URL_API', '"http://data.fixer.io/api/"'
+        }
+        debug {
+            versionNameSuffix " Debug"
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'ACCESS_KEY', '"access_key=7a83f7d4ab1e3c9dd930c9a28211ff3a"'
+            buildConfigField 'String', 'URL_API', '"http://data.fixer.io/api/"'
+        }
+    }
+}
+
+dependencies {
+    final supportLibraryVersion = '27.1.1'
+    final RETROFIT_VERSION = '2.1.0'
+    final mockito_version = '2.6.2'
+    final expresseVersion = '3.0.1'
+    final jUnitVersion = '4.12'
+    final runnerVersion = '1.0.1'
+    final koin_version = '0.9.0'
+    final anko_version = '0.10.4'
+    final androidArchitectureVersion = '1.1.1'
+    final coroutines_version = '0.22.5'
+    final roomVersion = '1.0.0'
+    final glideVersion = '4.6.1'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    //Test
+    testImplementation "junit:junit:$jUnitVersion"
+    androidTestImplementation "com.android.support.test:runner:$runnerVersion"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$expresseVersion"
+
+    //Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    //SupportLibrary
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation "com.android.support:support-vector-drawable:$supportLibraryVersion"
+    implementation "com.android.support:recyclerview-v7:$supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$supportLibraryVersion"
+    implementation "com.android.support:support-annotations:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
+
+    //Compomennts
+    implementation "com.android.support.constraint:constraint-layout:1.1.0"
+
+    //GSON
+    implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+
+    //Request logs
+    implementation "com.squareup.okhttp3:logging-interceptor:3.6.0"
+
+    //Timber
+    implementation "com.jakewharton.timber:timber:4.4.0"
+
+    // Koin
+    implementation "org.koin:koin-android-architecture:$koin_version"
+    testImplementation "org.koin:koin-test:$koin_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+
+    // Anko
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
+    // ViewModel and LiveData
+    implementation "android.arch.lifecycle:extensions:$androidArchitectureVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$androidArchitectureVersion"
+    testImplementation "android.arch.core:core-testing:$androidArchitectureVersion"
+
+    //Kotlin Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
+    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0"
+
+    //Room
+    implementation "android.arch.persistence.room:runtime:$roomVersion"
+    kapt "android.arch.persistence.room:compiler:$roomVersion"
+
+    //Glide
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+}
