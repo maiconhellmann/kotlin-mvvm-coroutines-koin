@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">Architecture</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="title_euro">EUR</string>
-    <string name="title_usd">USD</string>
-    <string name="title_brl">BRL</string>
+    <string name="search">Search movie</string>
+    <string name="movie">Movie</string>
+    <string name="series">Series</string>
+    <string name="episode">Episode</string>
+    <string name="error">Error</string>
+    <string name="no_series_found">No series found</string>
+    <string name="no_episode_found">No episode found</string>
+    <string name="no_movie_found" >No movie found</string>
 </resources>

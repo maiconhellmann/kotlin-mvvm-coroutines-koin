@@ -1,44 +1,63 @@
 package com.maiconhellmann.architecture.view.main
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
+import android.view.inputmethod.EditorInfo
 import com.maiconhellmann.architecture.R
+import com.maiconhellmann.architecture.misc.ext.hideKeyboard
+import com.maiconhellmann.architecture.view.BaseActivity
 import com.maiconhellmann.architecture.view.ViewConstants
 import kotlinx.android.synthetic.main.activity_main.*
 import org.koin.android.architecture.ext.viewModel
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
     val viewModel: MainViewModel by viewModel()
 
-    var menuIndex = 0
+    /**
+     * Selected menu id. Used to maintain state during the configuration changing
+     */
+    var menuItemId = R.id.navigation_movie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        viewModel.getLatestRate()
-
+        setupEditTextSearchMovie()
         setupBottomNavigationMenun()
-        showEuroFragment()
+
+        viewModel.start()
+    }
+
+    private fun setupEditTextSearchMovie() {
+        editTextSearchMovie.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                val query = editTextSearchMovie.text.toString()
+                viewModel.getMovieList(query)
+                editTextSearchMovie.hideKeyboard()
+                true
+            } else {
+                false
+            }
+        }
     }
 
     private fun setupBottomNavigationMenun() {
         bottomMenu.setOnNavigationItemSelectedListener {
             when {
-                it.itemId == R.id.navigation_eur -> {
-                    showEuroFragment()
+                it.itemId == R.id.navigation_episode -> {
+                    showEpisodeFragment()
                 }
-                it.itemId == R.id.navigation_usd -> {
-                    showUsdFragment()
+                it.itemId == R.id.navigation_movie -> {
+                    showMovieFragment()
                 }
-                it.itemId == R.id.navigation_brl -> {
-                    showBrlFragment()
+                it.itemId == R.id.navigation_series -> {
+                    showSeriesFragment()
                 }
             }
             true
         }
+        bottomMenu.selectedItemId = menuItemId
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -50,26 +69,26 @@ class MainActivity : AppCompatActivity() {
         super.onRestoreInstanceState(savedInstanceState)
 
         savedInstanceState?.let {
-            menuIndex = it.get(ViewConstants.BOTTOM_NAVIGATION_MENU_INDEX) as Int
-            bottomMenu.selectedItemId = menuIndex
+            menuItemId = it.get(ViewConstants.BOTTOM_NAVIGATION_MENU_INDEX) as Int
+            bottomMenu.selectedItemId = menuItemId
         }
     }
 
-    private fun showBrlFragment() {
+    private fun showSeriesFragment() {
         supportFragmentManager.beginTransaction()
-                .replace(R.id.container, BrlFragment())
+                .replace(R.id.container, SeriesFragment())
                 .commit()
     }
 
-    private fun showUsdFragment() {
+    private fun showMovieFragment() {
         supportFragmentManager.beginTransaction()
-                .replace(R.id.container, UsdFragment())
+                .replace(R.id.container, MovieFragment())
                 .commit()
     }
 
-    private fun showEuroFragment() {
+    private fun showEpisodeFragment() {
         supportFragmentManager.beginTransaction()
-                .replace(R.id.container, EuroFragment())
+                .replace(R.id.container, EpisodeFragment())
                 .commit()
     }
 }

@@ -26,6 +26,10 @@ abstract class AbstractViewModel : ViewModel() {
 
     open fun setLoading(isLoading: Boolean? = true) {
         isDataLoading.value = isLoading
+
+        if (isLoading == true) {
+            exception.value = null
+        }
     }
 
     open fun setError(t: Throwable) {

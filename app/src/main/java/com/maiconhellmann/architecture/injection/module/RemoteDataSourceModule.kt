@@ -3,7 +3,7 @@ package com.maiconhellmann.architecture.injection.module
 import com.google.gson.*
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
 import com.maiconhellmann.architecture.BuildConfig
-import com.maiconhellmann.architecture.data.remote.endpoint.RateWebService
+import com.maiconhellmann.architecture.data.remote.endpoint.MovieWebService
 import com.maiconhellmann.architecture.misc.RequestInterceptor
 import com.maiconhellmann.architecture.misc.UnsafeOkHttpClient
 import okhttp3.OkHttpClient
@@ -90,12 +90,12 @@ fun provideOkHttpClient(requestInterceptor: RequestInterceptor,
 /**
  * Provê o endpoint service para a aplicação
  */
-fun provideRemoteDataSource(okHttpClient: OkHttpClient, gson: Gson): RateWebService {
+fun provideRemoteDataSource(okHttpClient: OkHttpClient, gson: Gson): MovieWebService {
     return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl(BuildConfig.URL_API)
             .addConverterFactory(GsonConverterFactory.create(gson))
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .build()
-            .create(RateWebService::class.java)
+            .create(MovieWebService::class.java)
 }

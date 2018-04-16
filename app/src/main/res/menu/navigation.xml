@@ -2,18 +2,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_eur"
-        android:icon="@drawable/ic_home_black_24dp"
-        android:title="@string/title_euro" />
+        android:id="@+id/navigation_movie"
+        android:icon="@drawable/ic_movie_black_24dp"
+        android:title="@string/movie" />
 
     <item
-        android:id="@+id/navigation_usd"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_usd" />
+        android:id="@+id/navigation_series"
+        android:icon="@drawable/ic_local_movies_black_24dp"
+        android:title="@string/series" />
 
     <item
-        android:id="@+id/navigation_brl"
-        android:icon="@drawable/ic_notifications_black_24dp"
-        android:title="@string/title_brl" />
+        android:id="@+id/navigation_episode"
+        android:icon="@drawable/ic_movie_filter_black_24dp"
+        android:title="@string/episode" />
 
 </menu>

@@ -1,11 +1,11 @@
 package com.maiconhellmann.architecture.injection.module
 
-import com.maiconhellmann.architecture.data.local.RateDatabase
-import com.maiconhellmann.architecture.data.local.RateLocalDataSource
+import com.maiconhellmann.architecture.data.local.MovieDatabase
+import com.maiconhellmann.architecture.data.local.MovieLocalDataSource
 import org.koin.dsl.module.applicationContext
 
 val localDataSourceModule = applicationContext {
 
-    factory { RateLocalDataSource(get()) }
-    factory { RateDatabase.getInstance(get()) }
+    factory { MovieLocalDataSource(get()) }
+    factory { MovieDatabase.getInstance(get()) }
 }

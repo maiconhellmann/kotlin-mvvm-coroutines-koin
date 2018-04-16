@@ -18,15 +18,15 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'ACCESS_KEY', '"access_key=7a83f7d4ab1e3c9dd930c9a28211ff3a"'
-            buildConfigField 'String', 'URL_API', '"http://data.fixer.io/api/"'
+            buildConfigField 'String', 'API_KEY', '"i=tt3896198&apikey=a39c66fa"'
+            buildConfigField 'String', 'URL_API', '"http://www.omdbapi.com/"'
         }
         debug {
             versionNameSuffix " Debug"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'ACCESS_KEY', '"access_key=7a83f7d4ab1e3c9dd930c9a28211ff3a"'
-            buildConfigField 'String', 'URL_API', '"http://data.fixer.io/api/"'
+            buildConfigField 'String', 'API_KEY', '"i=tt3896198&apikey=a39c66fa"'
+            buildConfigField 'String', 'URL_API', '"http://www.omdbapi.com/"'
         }
     }
 }
@@ -85,7 +85,7 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockito_version"
 
     // Anko
-    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+    implementation "org.jetbrains.anko:anko:$anko_version"
 
     // ViewModel and LiveData
     implementation "android.arch.lifecycle:extensions:$androidArchitectureVersion"

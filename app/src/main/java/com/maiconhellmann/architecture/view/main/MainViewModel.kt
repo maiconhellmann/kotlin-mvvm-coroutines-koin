@@ -1,38 +1,53 @@
 package com.maiconhellmann.architecture.view.main
 
 import android.arch.lifecycle.MutableLiveData
-import com.maiconhellmann.architecture.data.RateRepository
-import com.maiconhellmann.architecture.data.model.Rate
+import com.maiconhellmann.architecture.data.MovieRepository
+import com.maiconhellmann.architecture.data.model.Movie
 import com.maiconhellmann.architecture.misc.ext.launchAsync
 import com.maiconhellmann.architecture.view.AbstractViewModel
-import kotlinx.coroutines.experimental.Job
 
-class MainViewModel(private val repository: RateRepository) : AbstractViewModel() {
+class MainViewModel(private val repository: MovieRepository) : AbstractViewModel() {
 
-    val rate = MutableLiveData<Rate>()
+    val movie = MutableLiveData<List<Movie>>()
+    val series = MutableLiveData<List<Movie>>()
+    val episode = MutableLiveData<List<Movie>>()
 
-    var latestRateJob: Job?= null
+    fun getMovieList(query: String) {
+        if (query.isEmpty().not()) {
 
-    fun getLatestRate() {
-        //Fun isn't suspended, so it's necessary to run in mainthread
-        latestRateJob = launchAsync {
-            try {
-                //The data is loading
-                setLoading()
+            //Fun isn't suspended, so it's necessary to run in mainthread
+            launchAsync {
+                try {
+                    //The data is loading
+                    setLoading()
 
-                //Request with a suspended repository funcion
-                val dto = repository.getLatestRate()
+                    //Request with a suspended repository funcion
+                    val dtoMovies = repository.searchMovies(query)
+                    val dtoEpisodes = repository.searchEpisodes(query)
+                    val dtoSeries = repository.searchSeries(query)
 
-                //Set resuts
-                rate.value = dto.rates
+                    movie.value = dtoMovies.search
+                    episode.value = dtoEpisodes.search
+                    series.value = dtoSeries.search
 
-            } catch (t: Throwable) {
-                //An error was throw
-                setError(t)
-            } finally {
-                //Isn't loading anymore
-                setLoading(false)
+                } catch (t: Throwable) {
+                    //An error was throw
+                    setError(t)
+                    movie.value = emptyList()
+                } finally {
+                    //Isn't loading anymore
+                    setLoading(false)
+                }
             }
+
+        } else {
+            movie.value = emptyList()
         }
+    }
+
+    fun start() {
+        movie.value = emptyList()
+        episode.value = emptyList()
+        series.value = emptyList()
     }
 }
