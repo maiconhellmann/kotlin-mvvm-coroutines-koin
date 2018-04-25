@@ -115,7 +115,7 @@ class LoginActivity : BaseActivity() {
                 .build()
 
         mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
-
+        mGoogleSignInClient?.signOut()
 
         googleButton.setSize(SignInButton.SIZE_STANDARD)
 
