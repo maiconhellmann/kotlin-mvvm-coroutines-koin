@@ -1,0 +1,43 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:2:1-7:12
+INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:2:1-7:12
+INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:2:1-7:12
+INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:2:1-7:12
+INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:2:1-7:12
+INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:2:1-7:12
+INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:2:1-7:12
+	package
+		ADDED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:3:5-45
+		INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+		INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+	android:versionName
+		INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+		ADDED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:2:1-7:12
+		INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+	android:versionCode
+		INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+		ADDED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:2:1-7:12
+		INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:5:5-20
+uses-permission#android.permission.INTERNET
+ADDED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:6:5-66
+	android:name
+		ADDED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml:6:22-64
+uses-sdk
+INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+		ADDED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+		INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+		ADDED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml
+		INJECTED from /home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/AndroidManifest.xml

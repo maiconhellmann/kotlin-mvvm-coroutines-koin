@@ -5,6 +5,7 @@ import com.maiconhellmann.architecture.injection.module.localDataSourceModule
 import com.maiconhellmann.architecture.injection.module.remoteDatasourceModule
 import com.maiconhellmann.architecture.injection.module.repositoryModule
 import com.maiconhellmann.architecture.injection.module.viewModelModule
+import com.twitter.sdk.android.core.Twitter
 import org.koin.android.ext.android.startKoin
 import timber.log.Timber
 import timber.log.Timber.DebugTree
@@ -23,5 +24,7 @@ class ArchitectureApplication : Application() {
                 localDataSourceModule,
                 repositoryModule,
                 viewModelModule))
+
+        Twitter.initialize(this)
     }
 }

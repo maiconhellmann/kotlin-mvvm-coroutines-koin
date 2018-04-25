@@ -3,8 +3,15 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
-
 android {
+    signingConfigs {
+        config {
+            keyAlias 'key0'
+            keyPassword 'nirvana'
+            storeFile file('/home/maiconhellmann/projects/maiconhellmann/Architecture/key.jks')
+            storePassword 'nirvana'
+        }
+    }
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.maiconhellmann.architecture"
@@ -15,18 +22,35 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        Properties properties = new Properties()
+        properties.load(project.rootProject.file('local.properties').newDataInputStream())
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'API_KEY', '"i=tt3896198&apikey=a39c66fa"'
+            buildConfigField 'String', 'API_KEY', properties.getProperty("api_key")
             buildConfigField 'String', 'URL_API', '"http://www.omdbapi.com/"'
+
+            resValue 'string', 'FACEBOOK_APP_ID', properties.getProperty("facebook_app_id")
+            resValue 'string', 'FACEBOOK_PROTOCOL', properties.getProperty("fb_login_protocol_scheme")
+            resValue 'string', 'GOOGLE_SERVER_CLIENT_ID', properties.getProperty("server_client_id")
+            resValue 'string', 'com.twitter.sdk.android.CONSUMER_KEY', properties.getProperty("com.twitter.sdk.android.CONSUMER_KEY")
+            resValue 'string', 'com.twitter.sdk.android.CONSUMER_SECRET', properties.getProperty("com.twitter.sdk.android.CONSUMER_SECRET")
         }
         debug {
             versionNameSuffix " Debug"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'API_KEY', '"i=tt3896198&apikey=a39c66fa"'
+            buildConfigField 'String', 'API_KEY', properties.getProperty("api_key")
             buildConfigField 'String', 'URL_API', '"http://www.omdbapi.com/"'
+
+            resValue 'string', 'FACEBOOK_APP_ID', properties.getProperty("facebook_app_id")
+            resValue 'string', 'FACEBOOK_PROTOCOL', properties.getProperty("fb_login_protocol_scheme")
+            resValue 'string', 'GOOGLE_SERVER_CLIENT_ID', properties.getProperty("server_client_id")
+            resValue 'string', 'com.twitter.sdk.android.CONSUMER_KEY', properties.getProperty("com.twitter.sdk.android.CONSUMER_KEY")
+            resValue 'string', 'com.twitter.sdk.android.CONSUMER_SECRET', properties.getProperty("com.twitter.sdk.android.CONSUMER_SECRET")
+
+            signingConfig signingConfigs.config
         }
     }
 }
@@ -44,8 +68,7 @@ dependencies {
     final coroutines_version = '0.22.5'
     final roomVersion = '1.0.0'
     final glideVersion = '4.6.1'
-
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
     //Test
     testImplementation "junit:junit:$jUnitVersion"
@@ -65,7 +88,7 @@ dependencies {
     implementation "com.android.support:design:$supportLibraryVersion"
 
     //Compomennts
-    implementation "com.android.support.constraint:constraint-layout:1.1.0"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
 
     //GSON
     implementation "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
@@ -74,10 +97,10 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
 
     //Request logs
-    implementation "com.squareup.okhttp3:logging-interceptor:3.6.0"
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
     //Timber
-    implementation "com.jakewharton.timber:timber:4.4.0"
+    implementation 'com.jakewharton.timber:timber:4.4.0'
 
     // Koin
     implementation "org.koin:koin-android-architecture:$koin_version"
@@ -94,7 +117,7 @@ dependencies {
 
     //Kotlin Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-    implementation "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0"
+    implementation 'com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0'
 
     //Room
     implementation "android.arch.persistence.room:runtime:$roomVersion"
@@ -103,4 +126,19 @@ dependencies {
     //Glide
     implementation "com.github.bumptech.glide:glide:$glideVersion"
     kapt "com.github.bumptech.glide:compiler:$glideVersion"
+
+    //Facebook
+    implementation 'com.facebook.android:facebook-android-sdk:4.32.0'
+
+    //Twitter
+    implementation 'com.twitter.sdk.android:twitter:3.1.1'
+
+    //Google authentication
+    implementation 'com.google.android.gms:play-services-auth:12.0.1'
+
+    //    implementation 'com.google.firebase:firebase-core:12.0.1'
+
+    //    implementation 'com.google.firebase:firebase-auth:12.0.1'
+    implementation project(':linkedin-sdk')
 }
+//apply plugin: 'com.google.gms.google-services'

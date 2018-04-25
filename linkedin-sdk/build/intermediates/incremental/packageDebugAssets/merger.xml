@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/main/assets"/><source path="/home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/build/generated/assets/shaders/debug"/></dataSet><dataSet config="debug"><source path="/home/maiconhellmann/projects/maiconhellmann/Architecture/linkedin-sdk/src/debug/assets"/></dataSet></merger>
