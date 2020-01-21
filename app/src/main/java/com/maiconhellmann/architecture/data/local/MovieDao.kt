@@ -1,6 +1,6 @@
 package com.maiconhellmann.architecture.data.local
 
-import android.arch.persistence.room.*
+import androidx.room.*
 import com.maiconhellmann.architecture.data.model.Movie
 
 @Dao

@@ -1,9 +1,9 @@
 package com.maiconhellmann.architecture.misc.ext
 
-import android.support.annotation.StringDef
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.EditText
+import androidx.annotation.StringDef
 
 /**
  * Source: https://andremrezende.wordpress.com/tag/android-mask-mascara-edittext-java-layout-cpf-cnpj/

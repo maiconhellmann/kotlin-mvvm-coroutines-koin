@@ -1,8 +1,10 @@
 package com.maiconhellmann.architecture.view
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
-import android.support.annotation.CallSuper
+import androidx.annotation.CallSuper
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 /**
  */
@@ -24,16 +26,21 @@ abstract class AbstractViewModel : ViewModel() {
         super.onCleared()
     }
 
-    open fun setLoading(isLoading: Boolean? = true) {
-        isDataLoading.value = isLoading
+    open suspend fun setLoading(isLoading: Boolean? = true) {
 
-        if (isLoading == true) {
-            exception.value = null
+        withContext(Dispatchers.Main) {
+            isDataLoading.value = isLoading
+
+            if (isLoading == true) {
+                exception.value = null
+            }
         }
     }
 
-    open fun setError(t: Throwable) {
-        exception.value = t
+    open suspend fun setError(t: Throwable) {
+        withContext(Dispatchers.Main) {
+            exception.value = t
+        }
     }
 
 }

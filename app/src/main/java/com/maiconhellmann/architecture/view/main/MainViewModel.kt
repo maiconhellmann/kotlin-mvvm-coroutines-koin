@@ -1,10 +1,13 @@
 package com.maiconhellmann.architecture.view.main
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.maiconhellmann.architecture.data.MovieRepository
 import com.maiconhellmann.architecture.data.model.Movie
-import com.maiconhellmann.architecture.misc.ext.launchAsync
 import com.maiconhellmann.architecture.view.AbstractViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainViewModel(private val repository: MovieRepository) : AbstractViewModel() {
 
@@ -16,24 +19,28 @@ class MainViewModel(private val repository: MovieRepository) : AbstractViewModel
         if (query.isEmpty().not()) {
 
             //Fun isn't suspended, so it's necessary to run in mainthread
-            launchAsync {
+            viewModelScope.launch {
                 try {
                     //The data is loading
                     setLoading()
 
-                    //Request with a suspended repository funcion
+                    //Request with a suspended repository function
                     val dtoMovies = repository.searchMovies(query)
                     val dtoEpisodes = repository.searchEpisodes(query)
                     val dtoSeries = repository.searchSeries(query)
 
-                    movie.value = dtoMovies.search
-                    episode.value = dtoEpisodes.search
-                    series.value = dtoSeries.search
+                    withContext(Dispatchers.Main) {
+                        movie.value = dtoMovies.search
+                        episode.value = dtoEpisodes.search
+                        series.value = dtoSeries.search
+                    }
 
                 } catch (t: Throwable) {
                     //An error was throw
                     setError(t)
-                    movie.value = emptyList()
+                    withContext(Dispatchers.Main) {
+                        movie.value = emptyList()
+                    }
                 } finally {
                     //Isn't loading anymore
                     setLoading(false)
