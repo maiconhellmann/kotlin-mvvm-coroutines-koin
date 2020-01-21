@@ -8,12 +8,11 @@ import android.net.ConnectivityManager
 import android.net.Uri
 import android.os.Looper
 import android.provider.MediaStore
-import android.support.annotation.ColorRes
-import android.support.annotation.StringRes
-import android.support.v4.app.Fragment
-import android.support.v4.content.ContextCompat
 import android.widget.Toast
-
+import androidx.annotation.ColorRes
+import androidx.annotation.StringRes
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.Fragment
 
 fun Context.isNetworkConnected(): Boolean {
     val cm = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -72,6 +71,7 @@ fun Fragment.longToast(@StringRes stringRes: Int) {
 }
 
 
+@Suppress("DEPRECATION")
 fun Context.getPath(contentUri: Uri): String {
     val proj = arrayOf(MediaStore.Images.Media.DATA)
     val result: String
@@ -98,6 +98,3 @@ fun Context.getPath(contentUri: Uri): String {
 fun Context.getColorCompat(@ColorRes resId: Int): Int {
     return ContextCompat.getColor(this, resId)
 }
-
-
-

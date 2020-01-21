@@ -1,7 +1,7 @@
 package com.maiconhellmann.architecture.injection.module
 
 import com.google.gson.*
-import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.CoroutineCallAdapterFactory
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.maiconhellmann.architecture.BuildConfig
 import com.maiconhellmann.architecture.data.remote.endpoint.MovieWebService
 import com.maiconhellmann.architecture.misc.RequestInterceptor

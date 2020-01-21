@@ -9,9 +9,10 @@ import com.maiconhellmann.architecture.misc.ext.gone
 import com.maiconhellmann.architecture.misc.ext.observe
 import com.maiconhellmann.architecture.misc.ext.visible
 import com.maiconhellmann.architecture.view.BaseFragment
-import kotlinx.android.synthetic.main.fragment_movie.*
-import org.jetbrains.anko.support.v4.alert
-import org.jetbrains.anko.yesButton
+import kotlinx.android.synthetic.main.fragment_movie.recyclerView
+import kotlinx.android.synthetic.main.fragment_movie.textViewError
+import kotlinx.android.synthetic.main.fragment_movie.viewError
+import kotlinx.android.synthetic.main.fragment_movie.viewProgressBar
 import org.koin.android.architecture.ext.viewModel
 
 class MovieFragment : BaseFragment() {
@@ -33,32 +34,33 @@ class MovieFragment : BaseFragment() {
 
     private fun setupObservers() {
         //Current currency
-        observe(viewModel.movie, {
+        observe(viewModel.movie) {
             it?.let {
                 adapter.dataList = it
             }
             showNoDataFound(adapter.dataList.isEmpty())
-        })
+        }
 
         //ProgressBar
-        observe(viewModel.isDataLoading, {
+        observe(viewModel.isDataLoading) {
             if (it == true) {
                 viewProgressBar.visible()
             } else {
                 viewProgressBar.gone()
             }
-        })
+        }
 
-        observe(viewModel.exception, {
+        observe(viewModel.exception) {
             showErrorMessage(it?.message)
-        })
+        }
     }
 
     private fun showErrorMessage(message: String?) {
         message?.let {
-            alert(message, getString(R.string.error)) {
-                yesButton { }
-            }.show()
+            //TODO alert dialog
+//            alert(message, getString(R.string.error)) {
+//                yesButton { }
+//            }.show()
             viewModel.exception.value = null
         }
     }

@@ -10,17 +10,17 @@ class MovieRepository(private val remoteDataSource: MovieWebService,
 
     suspend fun searchMovies(query: String): SearchMovieDto {
         //remote data source Request
-        return remoteDataSource.getMovies(query, Type.MOVIE.value).await()
+        return remoteDataSource.getMoviesAsync(query, Type.MOVIE.value).await()
     }
 
     suspend fun searchEpisodes(query: String): SearchMovieDto {
         //remote data source Request
-        return remoteDataSource.getMovies(query, Type.EPISODE.value).await()
+        return remoteDataSource.getMoviesAsync(query, Type.EPISODE.value).await()
     }
 
     suspend fun searchSeries(query: String): SearchMovieDto {
         //remote data source Request
-        return remoteDataSource.getMovies(query, Type.SERIES.value).await()
+        return remoteDataSource.getMoviesAsync(query, Type.SERIES.value).await()
     }
 
     suspend fun queryDatabase() {
